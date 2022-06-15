@@ -34,18 +34,35 @@ class TipoContrato(models.Model):
     def __str__(self):
         return self.nombre_tipo_contrato
 
-class Personas(models.Model):
-    numero_documento = models.CharField(max_length=20)
+class Personas(models.Model):      
+    foto_persona = models.ImageField(null=True, blank=True)  
+    tipo_documento = models.ForeignKey(TipoDocumento, on_delete=models.CASCADE)
+    numero_documento = models.CharField(max_length=20)    
+    ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE)
     primer_nombre = models.CharField(max_length=70)
     otros_nombres = models.CharField(max_length=70, null=True, blank=True)
     primer_apellido = models.CharField(max_length=70)
     otros_apellidos = models.CharField(max_length=70, null=True, blank=True)
-    correo_electronico = models.CharField(max_length=70)
+    correo_electronico = models.EmailField(max_length=254)
     telefono = models.CharField(max_length=50)
     perfil = models.TextField(max_length=250)
-    foto_persona = models.ImageField(null=True, blank=True)
-    tipo_documento = models.ForeignKey(TipoDocumento, on_delete=models.CASCADE)
-    ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.numero_documento
+
+
+class Cargos(models.Model):
+    cargo = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.cargo
+
+class Plazas(models.Model):
+    cargo = models.ForeignKey(Cargos, on_delete=models.CASCADE)
+    cantidad_vacante = models.IntegerField()
+    salario = models.FloatField(max_length=70)
+    descripcion = models.CharField(max_length=70)
+    ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE)
+    contrato = models.ForeignKey(TipoContrato, on_delete=models.CASCADE)
+
+    
