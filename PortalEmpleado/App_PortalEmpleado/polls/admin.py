@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Vacantes
+from .models import TipoDocumento
 
-admin.site.register(Vacantes)
+admin.site.register(TipoDocumento)
 

@@ -15,3 +15,9 @@ class DatosComplentariosVacantes(models.Model):
 
     def __str__(self):
         return self.salario, self.ciudad
+
+class TipoDocumento(models.Model):
+    nombre_documento = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.nombre_documento
