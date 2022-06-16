@@ -65,4 +65,15 @@ class Plazas(models.Model):
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE)
     contrato = models.ForeignKey(TipoContrato, on_delete=models.CASCADE)
 
-    
+    def __str__(self):
+        return self.descripcion
+
+class Postulados(models.Model):
+    id = models.AutoField(primary_key=True)
+    candidato = models.ForeignKey(Personas, on_delete=models.CASCADE)
+    plaza = models.ForeignKey(Plazas, on_delete=models.CASCADE)
+    fecha_postulacion= models.DateTimeField("fecha de postulación")
+
+    def __int__(self):
+        return self.id
+
