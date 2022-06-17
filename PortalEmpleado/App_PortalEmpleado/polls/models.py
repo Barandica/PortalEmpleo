@@ -35,7 +35,7 @@ class TipoContrato(models.Model):
         return self.nombre_tipo_contrato
 
 class Personas(models.Model):      
-    foto_persona = models.ImageField(null=True, blank=True)  
+    foto_persona = models.ImageField(upload_to= 'images/', null=True, blank=True)
     tipo_documento = models.ForeignKey(TipoDocumento, on_delete=models.CASCADE)
     numero_documento = models.CharField(max_length=20)    
     ciudad = models.ForeignKey(Ciudad, on_delete=models.CASCADE)
@@ -74,6 +74,7 @@ class Postulados(models.Model):
     plaza = models.ForeignKey(Plazas, on_delete=models.CASCADE)
     fecha_postulacion= models.DateTimeField("fecha de postulación")
 
-    def __int__(self):
-        return self.id
+    def __str__(self):
+        aux = self.id
+        return str(aux)
 
